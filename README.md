@@ -1,1 +1,1 @@
-# Djnago-React.JS
+# Django-React.JS
