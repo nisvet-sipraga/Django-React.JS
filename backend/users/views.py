@@ -3,7 +3,7 @@ from django.db.models import expressions
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.serializers import raise_errors_on_nested_writes
-from .models import CustomUser, Cat, PodCat, ListMovies, Category, Token_RefreshToken, Admin_token_RefreshToken
+from .models import CustomUser, Cat, PodCat, ListMovies, Category, Token_RefreshToken
 from .serializers import UserSerializer, AddMovies
 from flask import Flask, request, jsonify
 from django.http.response import JsonResponse
@@ -175,8 +175,14 @@ class TestLogin(APIView):
         print("ovo je email i pass")
         print(email, password)
         print("ovo je custom users")
-        print(CustomUser)
-        if user is not None:
+        print(user)
+        categoryUser = ""
+        a = ""
+        for i in user:
+            a = i
+            categoryUser = i.category_user
+        print(a)
+        if a != "":
             category = Token_RefreshToken.objects.all()
             token = ""
             refresToken = ""
@@ -184,8 +190,13 @@ class TestLogin(APIView):
                 print(i)
                 token = i.token
                 refresToken = i.refreshToken
-            print(token, refresToken)
-            return Response({'token': token, 'refreshToken': refresToken})
+                adminToken = i.adminToken
+            print(token, refresToken, adminToken)
+            if categoryUser == "NE":
+                return Response({'token': token, 'refreshToken': refresToken})
+            else:
+                return Response({'token': token, 'refreshToken': refresToken, 'adminToken': adminToken})
+
         else:
             print("nije usao u if")
             message = f'Hello {"Your username or password is incorrect"}'

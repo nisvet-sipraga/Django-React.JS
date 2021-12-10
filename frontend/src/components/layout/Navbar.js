@@ -20,6 +20,12 @@ const Navbar = () => {
             <li>
               <Link to="/logout">Logout</Link>
             </li>
+            <li>
+              <Link to="/addArticle">Wiew all movies</Link>
+            </li>
+            <li>
+              <Link to="/testToken">tesToken</Link>
+            </li>
           </Fragment>
         ) : (
           <Fragment>
@@ -32,6 +38,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/adminLogin">Admin Login</Link>
+            </li>
+            <li>
+              <Link to="/testToken">tesToken</Link>
             </li>
           </Fragment>
         )}

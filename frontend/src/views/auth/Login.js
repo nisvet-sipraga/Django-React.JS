@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import InputLogin from "../../components/formInput/SignupForm";
+import TokenAuthentication from "../../components/token/token";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (localStorage.getItem("token") !== null) {
-      window.location.replace("http://localhost:3000/dashboard");
-    } else {
-      setLoading(false);
-    }
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -34,20 +27,29 @@ const Login = () => {
       .then((data) => {
         console.log("ovo je ispod data");
         console.log(data.token);
+
         if (data.token) {
           localStorage.clear();
           localStorage.setItem("token", data.token);
           localStorage.setItem("refreshToken", data.refreshToken);
-          window.location.replace("http://localhost:3000/");
+          console.log("ovo je iznad console log");
+          console.log(localStorage.token);
         } else {
           setEmail("");
           setPassword("");
           localStorage.clear();
+          console.log("ovo je iznad console log");
+          console.log(localStorage.setItem);
           setErrors(true);
         }
       });
   };
-
+  useEffect(() => {
+    <TokenAuthentication
+      token={localStorage.token}
+      refreshToken={localStorage.refreshToken}
+    />;
+  }, []);
   return (
     <div>
       {loading === false && <h1>Login</h1>}

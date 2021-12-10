@@ -36,8 +36,4 @@ class Category(models.Model):
 class Token_RefreshToken(models.Model):
     token = models.CharField(max_length=300)
     refreshToken = models.CharField(max_length=300)
-
-
-class Admin_token_RefreshToken(models.Model):
-    token = models.CharField(max_length=300)
-    refreshToken = models.CharField(max_length=300)
+    adminToken = models.CharField(max_length=300)

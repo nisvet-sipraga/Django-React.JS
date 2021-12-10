@@ -5,9 +5,8 @@ import Login from "./views/auth/Login";
 import Signup from "./views/auth/Signup";
 import Logout from "./views/auth/Logout";
 import { Switch } from "react-router-dom";
-import AdminLoginPage from "./components/adminLogin/adminLogin";
 import AdminLogin from "./components/loginAdmin/loginAdmin";
-
+import TokenAuthentication from "./components/token/token";
 const App = () => {
   return (
     <div className="App">
@@ -18,6 +17,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} exact />
           <Route path="/logout" element={<Logout />} exact />
           <Route path="/adminLogin" element={<AdminLogin />} exact />
+          <Route path="/testToken" element={<TokenAuthentication />} exact />
         </Routes>
       </Router>
     </div>

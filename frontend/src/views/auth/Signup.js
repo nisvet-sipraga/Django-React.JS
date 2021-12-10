@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import InputLogin from "../../components/formInput/SignupForm";
 import PropTypes from "prop-types";
 import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { Tokenn } from "../../components/loginAdmin/loginAdmin";
+import TokenAuthentication from "../../components/token/token";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
