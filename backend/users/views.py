@@ -73,14 +73,22 @@ class CategoryView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         data = request.data
-        name = data.get('name')
+        name1 = data.get('name')
+        categoryId1 = data.get('categoryId')
         print("ovo je name i categoryId")
-        print(name)
-
-        print(serializer)
+        print(name1)
+        print(categoryId1)
+        
         if serializer.is_valid():
             print("usao je u serializer")
-            Category = serializer.save()
+            try:
+                Category.objects.filter(categoryId=categoryId1).update(name=name1)
+        
+                
+            except:
+                Category = serializer.save()
+           
+                
 
         message = f'Hello {"uspjesno ste dodali artikal"}'
         return Response({'message': message})
