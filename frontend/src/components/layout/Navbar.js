@@ -24,7 +24,7 @@ const Navbar = () => {
               <Link to="/addArticle">Wiew all movies</Link>
             </li>
             <li>
-              <Link to="/testToken">tesToken</Link>
+              <Link to="/addMovies">AddMovies</Link>
             </li>
           </Fragment>
         ) : (

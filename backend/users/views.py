@@ -71,6 +71,7 @@ class CategoryView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request):
+        print("ovo je post")
         serializer = self.serializer_class(data=request.data)
         data = request.data
         name = data.get('name')
@@ -85,6 +86,24 @@ class CategoryView(APIView):
         message = f'Hello {"uspjesno ste dodali artikal"}'
         return Response({'message': message})
 
+
+
+    def put(self, request):
+        print("ovo je put")
+        serializer = self.serializer_class(data=request.data)
+        data = request.data
+        name1 = data.get('name')
+        categoryId1 = data.get('categoryId')
+        print("ovo je name i categoryId")
+        print(name1)
+        print(categoryId1)
+
+        print(serializer)
+        if serializer.is_valid():
+            print("usao je u serializer")
+            Category.objects.filter(categoryId=categoryId1).update(name=name1)
+        message = f'Hello {"uspjesno ste dodali artikal"}'
+        return Response({'message': message})
 
 # API FOR LISTING SUBCATEGORY
 class PodCategoryView(APIView):
