@@ -43,6 +43,7 @@ const AddMovies = () => {
       }, []);
 
 
+<<<<<<< HEAD
       const onSubmit1 = (e) => {
         e.preventDefault();
         window.location.reload(true);
@@ -73,6 +74,11 @@ const AddMovies = () => {
       const onSubmit = (a) => {
         a.preventDefault();
         window.location.reload(true);
+=======
+      const onSubmit = (a) => {
+        a.preventDefault();
+    
+>>>>>>> origin
         const user = {
           name:name,
           categoryId:categoryId,
@@ -82,7 +88,11 @@ const AddMovies = () => {
         console.log("ovo je user")
         console.log(user)
         fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
+<<<<<<< HEAD
           method: "PUT",
+=======
+          method: "POST",
+>>>>>>> origin
           headers: {
             "Content-Type": "application/json",
           },
@@ -149,7 +159,11 @@ const AddMovies = () => {
       
             <Form.Label>Your old category</Form.Label>
             <InputLogin  label={editCategory.name}  value={categoryId} change={(a) => setCategoryId(a.target.value)}/>
+<<<<<<< HEAD
             <InputLogin  label={editCategory.name}  value={name} change={(a) => setName(a.target.value)} />
+=======
+            <InputLogin  label={editCategory.name}  value={name} change={(a) => setName(a.target.value)}/>
+>>>>>>> origin
             <input type="submit" value="Edit category" />
           </form>
          </Modal.Body>
@@ -157,6 +171,7 @@ const AddMovies = () => {
 
 
 
+<<<<<<< HEAD
 
 
           <Modal size="lg" centered show={ visible } onHide={ () => setVisible(false) } >
@@ -175,6 +190,8 @@ const AddMovies = () => {
           </Modal>
 
 
+=======
+>>>>>>> origin
       </Container>
       );
 

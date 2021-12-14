@@ -6,8 +6,13 @@ import Signup from "./views/auth/Signup";
 import Logout from "./views/auth/Logout";
 import { Switch } from "react-router-dom";
 import AdminLogin from "./components/loginAdmin/loginAdmin";
+<<<<<<< HEAD
 import AddMovies from "./components/addMovies/addMovies";
 
+=======
+import TokenAuthentication from "./components/token/token";
+import AddMovies from "./components/addMovies/addMovies";
+>>>>>>> origin
 const App = () => {
   return (
     <div className="App">
@@ -18,6 +23,10 @@ const App = () => {
           <Route path="/signup" element={<Signup />} exact />
           <Route path="/logout" element={<Logout />} exact />
           <Route path="/adminLogin" element={<AdminLogin />} exact />
+<<<<<<< HEAD
+=======
+          <Route path="/testToken" element={<TokenAuthentication />} exact />
+>>>>>>> origin
           <Route path="/addMovies" element={<AddMovies />} exact />
         </Routes>
       </Router>
