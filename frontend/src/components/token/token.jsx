@@ -3,37 +3,34 @@ import PropTypes from 'prop-types'
 import { FormControl, FormGroup, FormLabel } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { useState, useEffect } from "react";
+import InputLogin from "../formInput/SignupForm";
 
-
-const TokenAuthentication = ({token , refreshToken} ) => {
-    const [email, setEmail] = useState("");
+const TokenAuthentication = ({value}) => {
+    let values = value
+    let valuess = "ovojevaluesss"
+    const [token1, setEmail] = useState("");
+    
     console.log("ovo je token sa logina na odvojenom")
-    console.log(token)
-    const user = {
-        email1: email,
-      };
-    console.log("ovo je ispod user")
-    console.log(user)
- 
-
+    console.log(token1)
+    console.log(values)
+    console.log(valuess)
+    
+    useEffect(() => {
+      setEmail(values)
+      console.log(token1);
+    }, []);
     return (
-      <div>
-        <form
-         value={token}
-         onChange={(e) => setEmail(e.target.value)}
-        >{" "}
-        </form>
-     
 
+    <main>
+    </main>
 
-      </div>
     );
 
 }
 
 TokenAuthentication.propTypes = {
-    token: PropTypes.string,
-    refreshToken: PropTypes.string,
+    value: PropTypes.string,
+
 }
 export default TokenAuthentication 
 

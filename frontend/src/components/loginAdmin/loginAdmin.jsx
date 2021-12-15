@@ -4,6 +4,7 @@ import React from "react";
 import { Card, Container, Form ,Button, Col, Alert} from "react-bootstrap";
 import { useState, useEffect } from "react";
 import InputLogin from "../formInput/SignupForm";
+import TokenAuthentication from "../token/token";
 
 
 
@@ -37,7 +38,8 @@ const AdminLogin = () => {
               localStorage.setItem("token", data.token);
               localStorage.setItem("refreshToken", data.refreshToken);
               localStorage.setItem("adminToken", data.adminToken);
-              window.location.replace("http://localhost:3000/");
+              window.location.replace("http://localhost:3000/testToken");
+              <TokenAuthentication value={"ovojetookensaloginAdmina"}/>
             } else {
               setEmail("");
               setPassword("");
@@ -45,7 +47,7 @@ const AdminLogin = () => {
             }
           });
       };
-
+      
       return (
         <div>
 

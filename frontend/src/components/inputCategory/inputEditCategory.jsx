@@ -5,7 +5,8 @@ import  { Row , ButtonToolbar, Dropdown, Nav, NavDropdown, Table, Modal} from 'r
 import { Card, Container, Form ,Button, Col, Alert} from "react-bootstrap";
 import InputLogin from "../formInput/SignupForm";
 
-const ModalInputAdd = ({show, onHide, onSubmit,value, label, change } ) => {
+
+const ModalInputEdit = ({show, onHide, onSubmit,value, label, change } ) => {
     return (
         <Modal size="lg" centered show={ show } onHide={ onHide } >
         <Modal.Header closeButton>
@@ -17,6 +18,7 @@ const ModalInputAdd = ({show, onHide, onSubmit,value, label, change } ) => {
      
            <Form.Label>Your old category</Form.Label>
            <InputLogin  label={label}  value={value} change={change}/>
+           <InputLogin  label={label}  value={value} change={change}/>
            <input type="submit" value="Edit category" />
          </form>
         </Modal.Body>
@@ -27,7 +29,7 @@ const ModalInputAdd = ({show, onHide, onSubmit,value, label, change } ) => {
 
 
 
-ModalInputAdd.propTypes = {
+ModalInputEdit.propTypes = {
     show: PropTypes.string,
     value: PropTypes.string,
     onHide: PropTypes.string,
@@ -36,4 +38,4 @@ ModalInputAdd.propTypes = {
     change: PropTypes.func
 }
 
-export default ModalInputAdd
+export default ModalInputEdit 

@@ -7,8 +7,7 @@ import Logout from "./views/auth/Logout";
 import { Switch } from "react-router-dom";
 import AdminLogin from "./components/loginAdmin/loginAdmin";
 import TokenAuthentication from "./components/token/token";
-import AddCategory from "./components/addMovies/addMovies";
-
+import AddCategory from "./components/add-edit-delete-category/add-edit-delete-category";
 
 const App = () => {
   return (
@@ -21,8 +20,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} exact />
           <Route path="/adminLogin" element={<AdminLogin />} exact />
           <Route path="/testToken" element={<TokenAuthentication />} exact />
-
-          <Route path="/addMovies" element={<AddCategory />} exact />
+          <Route path="/AddCategory" element={<AddCategory />} exact />
         </Routes>
       </Router>
     </div>

@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import {  faArrowAltCircleRight, faListAlt, faPlus, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ModalInput from "../inputCategory/modal";
+import ModalInputAdd from "../inputCategory/modal";
+import ModalInputEdit from "../inputCategory/modal";
 
 
 const AddCategory = () => {
@@ -173,25 +174,9 @@ const AddCategory = () => {
           </Card.Body>
         </Card>
 
-        <Modal size="lg" centered show={ visibleEdit } onHide={ () => setVisibleEdit(false) } >
-         <Modal.Header closeButton>
-           <Modal.Title> Add new category</Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
-         <form onSubmit={onSubmit}>
-            <br />
-      
-            <Form.Label>Your old category</Form.Label>
-            <InputLogin  label={editCategory.name}  value={categoryId} change={(a) => setCategoryId(a.target.value)}/>
-            <InputLogin  label={editCategory.name}  value={name} change={(a) => setName(a.target.value)} />
-            <input type="submit" value="Edit category" />
-          </form>
-         </Modal.Body>
-          </Modal>
+       <ModalInputEdit show= {visibleEdit} onHide={ () => setVisibleEdit(false) }  onSubmit={onSubmit} label={editCategory.name} value={name} change={(a) => setName(a.target.value)} label1={editCategory.name} value1={categoryId} change1={(a) => setCategoryId(a.target.value)}/>
 
-
-     
-        <ModalInput show= {visible} nHide={ () => setVisible(false) }  onSubmit={onSubmit1} label={editCategory.name} value={name} change={(e) => setName(e.target.value)}/>
+        <ModalInputAdd show= {visible} onHide={ () => setVisible(false) }  onSubmit={onSubmit1} label={editCategory.name} value={name} change={(e) => setName(e.target.value)}/>
 
 
       </Container>
