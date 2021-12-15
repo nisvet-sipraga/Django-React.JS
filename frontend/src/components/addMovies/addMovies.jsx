@@ -7,8 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import {  faArrowAltCircleRight, faListAlt, faPlus, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ModalInput from "../inputCategory/modal";
 
-const AddMovies = () => {
+
+const AddCategory = () => {
     const [categories, setCategories] = useState([])
     const [visible, setVisible] = useState(Boolean)
     const [visibleEdit, setVisibleEdit] = useState(Boolean)
@@ -20,6 +22,13 @@ const AddMovies = () => {
     console.log(name)
     console.log("ovo je izmedu name i categoryId")
     console.log(categoryId)
+
+
+
+    function deleteCategory(props) {
+      return (console.log(categoryId)
+      );
+    }
 
     useEffect(() => {
 
@@ -43,7 +52,6 @@ const AddMovies = () => {
       }, []);
 
 
-<<<<<<< HEAD
       const onSubmit1 = (e) => {
         e.preventDefault();
         window.location.reload(true);
@@ -74,11 +82,6 @@ const AddMovies = () => {
       const onSubmit = (a) => {
         a.preventDefault();
         window.location.reload(true);
-=======
-      const onSubmit = (a) => {
-        a.preventDefault();
-    
->>>>>>> origin
         const user = {
           name:name,
           categoryId:categoryId,
@@ -88,11 +91,7 @@ const AddMovies = () => {
         console.log("ovo je user")
         console.log(user)
         fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
-<<<<<<< HEAD
           method: "PUT",
-=======
-          method: "POST",
->>>>>>> origin
           headers: {
             "Content-Type": "application/json",
           },
@@ -104,7 +103,28 @@ const AddMovies = () => {
       };
 
 
-      return (
+
+      function deleteCategory(name) {
+        console.log("ovo je iz funkcije deleteCategory")
+        console.log(name)
+
+        const user = {
+          name:name,
+        };
+        fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(name),
+            })
+          .then((res) => res.json())
+          .then((data) => {
+          });
+          window.location.reload(true);
+          }
+
+    return (
     <Container>
           <Card>
           <Card.Body>
@@ -139,6 +159,10 @@ const AddMovies = () => {
                        onClick={ () => {setVisibleEdit (true); setName(hit.name) ; setCategoryId(hit.categoryId)}} >
                       <FontAwesomeIcon icon={ faPlus }/> Edit
                        </Button>
+                       <Button variant="danger" 
+                       onClick={ () => { deleteCategory(hit.name)}} >
+                      <FontAwesomeIcon icon={ faPlus }/> Delete
+                       </Button>
                         </td>
                         </tr>
                         
@@ -159,39 +183,17 @@ const AddMovies = () => {
       
             <Form.Label>Your old category</Form.Label>
             <InputLogin  label={editCategory.name}  value={categoryId} change={(a) => setCategoryId(a.target.value)}/>
-<<<<<<< HEAD
             <InputLogin  label={editCategory.name}  value={name} change={(a) => setName(a.target.value)} />
-=======
-            <InputLogin  label={editCategory.name}  value={name} change={(a) => setName(a.target.value)}/>
->>>>>>> origin
             <input type="submit" value="Edit category" />
           </form>
          </Modal.Body>
           </Modal>
 
 
-
-<<<<<<< HEAD
-
-
-          <Modal size="lg" centered show={ visible } onHide={ () => setVisible(false) } >
-         <Modal.Header closeButton>
-           <Modal.Title> Add new category</Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
-         <form onSubmit={onSubmit1}>
-            <br />
-      
-            <Form.Label>Your new category</Form.Label>
-            <InputLogin  label={editCategory.name}  value={name} change={(e) => setName(e.target.value)}/>
-            <input type="submit" value="Edit category" />
-          </form>
-         </Modal.Body>
-          </Modal>
+     
+        <ModalInput show= {visible} nHide={ () => setVisible(false) }  onSubmit={onSubmit1} label={editCategory.name} value={name} change={(e) => setName(e.target.value)}/>
 
 
-=======
->>>>>>> origin
       </Container>
       );
 
@@ -199,7 +201,7 @@ const AddMovies = () => {
 }
 
 
-export default AddMovies
+export default AddCategory
 
 
 

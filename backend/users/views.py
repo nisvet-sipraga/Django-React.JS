@@ -21,11 +21,9 @@ class UserListView(ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
-
+#ADMIN LOGIN
 class AdminLogin(APIView):
-
     serializer_class = serializers.UserSerializer
-
     def post(self, request):
         print("dosao je u post admin logina")
         serializer = self.serializer_class(data=request.data)
@@ -45,10 +43,9 @@ class AdminLogin(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-# API FOR LISTING GENERAL CATEGORIES AND ADD
+# API FOR LISTING GENERAL CATEGORIES ,ADD, EDIT AND DELETE
 class CategoryView(APIView):
     serializer_class = serializers.AddCategory
-
     def get(self, request):
         try:
             category = Category.objects.all()
@@ -112,6 +109,23 @@ class CategoryView(APIView):
             Category.objects.filter(categoryId=categoryId1).update(name=name1)
         message = f'Hello {"uspjesno ste dodali artikal"}'
         return Response({'message': message})
+
+
+
+    def delete(self, request):
+        print("ovo je put")
+        serializer = self.serializer_class(data=request.data)
+        data = request.data
+        print(data)
+
+        print(serializer)
+        print("usao je u serializer")
+        try:
+            Category.objects.filter(name=data).delete()
+            message = f'Hello {"uspjesno ste dodali artikal"}'
+            return Response({'message': message})
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 # API FOR LISTING SUBCATEGORY
 class PodCategoryView(APIView):
@@ -188,8 +202,6 @@ class AddMovesView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 # API LOGIN
-
-
 class TestLogin(APIView):
     serializer_class = serializers.LoginSerializers
 
