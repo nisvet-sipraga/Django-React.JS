@@ -34,6 +34,7 @@ const Login = () => {
           localStorage.setItem("refreshToken", data.refreshToken);
           console.log("ovo je iznad console log");
           console.log(localStorage.token);
+          window.location.replace("http://localhost:3000/");
         } else {
           setEmail("");
           setPassword("");

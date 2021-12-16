@@ -12,6 +12,6 @@ urlpatterns = [
     path('adminLogin/', views.AdminLogin.as_view()),
     path('testLogin/', views.TestLogin.as_view()),
     path('testRegister/', views.Register.as_view()),
-
+    path('testToken/', views.TestToken.as_view()),
 
 ]

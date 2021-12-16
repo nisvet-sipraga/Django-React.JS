@@ -5,26 +5,32 @@ import { Redirect } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import InputLogin from "../formInput/SignupForm";
 
-const TokenAuthentication = () => {
-    const [token, setToken] = useState("");
-    console.log("ovo je token sa page")
-    console.log(token)
+const AdminTokenAuthentication = () => {
     useEffect(() => {
 
       fetch("http://127.0.0.1:8000/api/v1/users/testToken/")
         .then(res => res.json())
         .then((result) => {
             let token = result.token
-            let refreshtoken = result.token
-            setToken(token);
-            console.log("ovo je ispod items")
+            let refreshtoken = result.refreshToken
+            let adminToken = result.adminToken
             console.log(token)
             console.log(localStorage.token)
-            if (token === localStorage.token || refreshtoken === localStorage.refreshToken){
- 
+            console.log(refreshtoken)
+            console.log(localStorage.refreshToken)
+            console.log(adminToken)
+            console.log(localStorage.adminToken)
+            if (adminToken === localStorage.adminToken ){
+                if((refreshtoken === localStorage.refreshToken) || (token === localStorage.token)){
+                   
+                }
+                else{
+                  window.location.replace("http://localhost:3000/adminLogin");
+                }
+               
             }
             else{
-              window.location.replace("http://localhost:3000/login");
+              window.location.replace("http://localhost:3000/adminLogin");
             }
            },
           
@@ -46,6 +52,6 @@ const TokenAuthentication = () => {
 }
 
 
-export default TokenAuthentication 
+export default AdminTokenAuthentication 
 
 

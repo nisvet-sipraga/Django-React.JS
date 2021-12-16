@@ -11,7 +11,6 @@ import TokenAuthentication from "../token/token";
 const AdminLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const onSubmit = (e) => {
         e.preventDefault();
     
@@ -33,13 +32,17 @@ const AdminLogin = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.token && data.refreshToken) {
+            if (data.token && data.refreshToken && data.adminToken) {
+
+              console.log("ovo je data")
+              console.log(data)
               localStorage.clear();
               localStorage.setItem("token", data.token);
               localStorage.setItem("refreshToken", data.refreshToken);
               localStorage.setItem("adminToken", data.adminToken);
-              window.location.replace("http://localhost:3000/testToken");
-              <TokenAuthentication value={"ovojetookensaloginAdmina"}/>
+              window.location.replace("http://localhost:3000/adminToken");
+
+              
             } else {
               setEmail("");
               setPassword("");
@@ -47,10 +50,15 @@ const AdminLogin = () => {
             }
           });
       };
+
+
+
       
+
+
       return (
         <div>
-
+        <h1>Admin Login</h1>
           <form onSubmit={onSubmit}>
             <br /><br/>
             
@@ -67,7 +75,12 @@ const AdminLogin = () => {
 }
 
 
-export default AdminLogin
+
+export default AdminLogin;
+
+
+
+
 
 
 

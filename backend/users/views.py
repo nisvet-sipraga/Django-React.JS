@@ -21,9 +21,12 @@ class UserListView(ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
-#ADMIN LOGIN
+# ADMIN LOGIN
+
+
 class AdminLogin(APIView):
     serializer_class = serializers.UserSerializer
+
     def post(self, request):
         print("dosao je u post admin logina")
         serializer = self.serializer_class(data=request.data)
@@ -46,6 +49,7 @@ class AdminLogin(APIView):
 # API FOR LISTING GENERAL CATEGORIES ,ADD, EDIT AND DELETE
 class CategoryView(APIView):
     serializer_class = serializers.AddCategory
+
     def get(self, request):
         try:
             category = Category.objects.all()
@@ -76,22 +80,18 @@ class CategoryView(APIView):
         print("ovo je name i categoryId")
         print(name1)
         print(categoryId1)
-        
+
         if serializer.is_valid():
             print("usao je u serializer")
             try:
-                Category.objects.filter(categoryId=categoryId1).update(name=name1)
-        
-                
+                Category.objects.filter(
+                    categoryId=categoryId1).update(name=name1)
+
             except:
                 Category = serializer.save()
-           
-                
 
         message = f'Hello {"uspjesno ste dodali artikal"}'
         return Response({'message': message})
-
-
 
     def put(self, request):
         print("ovo je put")
@@ -110,8 +110,6 @@ class CategoryView(APIView):
         message = f'Hello {"uspjesno ste dodali artikal"}'
         return Response({'message': message})
 
-
-
     def delete(self, request):
         print("ovo je put")
         serializer = self.serializer_class(data=request.data)
@@ -128,6 +126,8 @@ class CategoryView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 # API FOR LISTING SUBCATEGORY
+
+
 class PodCategoryView(APIView):
     def get(self, request, cId):
         try:
@@ -202,6 +202,8 @@ class AddMovesView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 # API LOGIN
+
+
 class TestLogin(APIView):
     serializer_class = serializers.LoginSerializers
 
@@ -266,3 +268,47 @@ class Register(APIView):
             return Response(
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST)
+
+
+# TEST USER TOKEN
+class TestToken(APIView):
+    def get(self, request):
+        try:
+            category = Token_RefreshToken.objects.all()
+            token = ""
+            refresToken = ""
+            for i in category:
+                print(i)
+                token = i.token
+                refresToken = i.refreshToken
+            data = {
+                'token': token,
+                'refreshToken': refresToken
+            }
+            print(data)
+            return JsonResponse(data)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+# TEST USER TOKEN
+class TestToken(APIView):
+    def get(self, request):
+        try:
+            category = Token_RefreshToken.objects.all()
+            token = ""
+            refresToken = ""
+            for i in category:
+                print(i)
+                token = i.token
+                refresToken = i.refreshToken
+                adminToken = i.adminToken
+            data = {
+                'token': token,
+                'refreshToken': refresToken,
+                'adminToken': adminToken
+            }
+            print(data)
+            return JsonResponse(data)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)

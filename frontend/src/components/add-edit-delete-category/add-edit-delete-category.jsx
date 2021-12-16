@@ -9,6 +9,8 @@ import {  faArrowAltCircleRight, faListAlt, faPlus, faUserPlus } from '@fortawes
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalInputAdd from "../inputCategory/modal";
 import ModalInputEdit from "../inputCategory/modal";
+import TokenAuthentication from "../token/token";
+import AdminTokenAuthentication from "../token/adminToken";
 
 
 const AddCategory = () => {
@@ -126,7 +128,9 @@ const AddCategory = () => {
           }
 
     return (
+      
     <Container>
+      <AdminTokenAuthentication/>
           <Card>
           <Card.Body>
             <Card.Title>
