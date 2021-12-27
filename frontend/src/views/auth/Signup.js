@@ -26,7 +26,7 @@ const Signup = () => {
 
     console.log("ovo je ispod cons usera");
     console.log(user);
-    fetch("http://127.0.0.1:8000/api/v1/users/testRegister/", {
+    fetch("http://127.0.0.1:8000/api/v1/backend_react/testRegister/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

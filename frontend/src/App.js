@@ -10,9 +10,17 @@ import TokenAuthentication from "./components/token/token";
 import AdminTokenAuthentication from "./components/token/adminToken";
 import AddCategory from "./components/add-edit-delete-category/add-edit-delete-category";
 import ViewMovies from "./components/viewMovies/viewMovies";
+import Ape from "./components/testusContext/test1";
+import Aside from "./components/testusContext/Aside";
+import Main from "./components/testusContext/Main";
+import store from "./store";
+import { Provider } from "react-redux";
+
+
 const App = () => {
   return (
     <div className="App">
+      <Provider store={store}>
       <Router>
         <Navbar />
         <Routes>
@@ -30,6 +38,7 @@ const App = () => {
           <Route path="/viewMovies" element={<ViewMovies />} exact />
         </Routes>
       </Router>
+      </Provider>
     </div>
   );
 };

@@ -14,12 +14,6 @@ const AdminTokenAuthentication = () => {
             let token = result.token
             let refreshtoken = result.refreshToken
             let adminToken = result.adminToken
-            console.log(token)
-            console.log(localStorage.token)
-            console.log(refreshtoken)
-            console.log(localStorage.refreshToken)
-            console.log(adminToken)
-            console.log(localStorage.adminToken)
             if (adminToken === localStorage.adminToken ){
                 if((refreshtoken === localStorage.refreshToken) || (token === localStorage.token)){
                    

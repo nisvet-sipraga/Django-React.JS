@@ -11,7 +11,7 @@ const TokenAuthentication = () => {
     console.log(token)
     useEffect(() => {
 
-      fetch("http://127.0.0.1:8000/api/v1/users/testToken/")
+      fetch("http://127.0.0.1:8000/api/v1/backend_react/testToken/")
         .then(res => res.json())
         .then((result) => {
             let token = result.token

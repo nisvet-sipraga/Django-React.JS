@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Container, Form ,Button, Col, Alert} from "react-bootstrap";
 import { useState, useEffect } from "react";
 import InputLogin from "../formInput/SignupForm";
@@ -11,6 +11,8 @@ import ModalInputAdd from "../inputCategory/modal";
 import ModalInputEdit from "../inputCategory/modal";
 import TokenAuthentication from "../token/token";
 import AdminTokenAuthentication from "../token/adminToken";
+import { useDispatch , useSelector } from "react-redux";
+import { removeUser, setUser } from "../../views/auth/store/actions";
 
 
 const AddCategory = () => {
@@ -20,11 +22,10 @@ const AddCategory = () => {
     const [name, setName] = useState("")
     const [categoryId , setCategoryId] = useState(Number)
     const [editCategory , setEditCategory] = useState ([])
-    
-    console.log("ovo je name")
-    console.log(name)
-    console.log("ovo je izmedu name i categoryId")
-    console.log(categoryId)
+    console.log("ovo je nasljedeno iz storra")
+    const userStore = useSelector(store => store.userStore);
+    console.log(userStore.token)
+
 
 
 
@@ -35,7 +36,7 @@ const AddCategory = () => {
 
     useEffect(() => {
 
-        fetch("http://127.0.0.1:8000/api/v1/users/cat/")
+        fetch("http://127.0.0.1:8000/api/v1/backend_react/cat/")
           .then(res => res.json())
           .then((result) => {
               let items = result.categories
@@ -48,9 +49,8 @@ const AddCategory = () => {
     
           )
           .catch((error) => {
-            console.log("imate problem");
             console.log(error.status)
-            console.log("iznad je error response status")
+
           });
       }, []);
 
@@ -66,7 +66,7 @@ const AddCategory = () => {
         };
         console.log("ovo je user")
         console.log(user)
-        fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
+        fetch("http://127.0.0.1:8000/api/v1/backend_react/cat/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const AddCategory = () => {
         };
         console.log("ovo je user")
         console.log(user)
-        fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
+        fetch("http://127.0.0.1:8000/api/v1/backend_react/cat/", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const AddCategory = () => {
         const user = {
           name:name,
         };
-        fetch("http://127.0.0.1:8000/api/v1/users/cat/", {
+        fetch("http://127.0.0.1:8000/api/v1/backend_react/cat/", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

@@ -14,10 +14,8 @@ const ModalInputAdd = ({show, onHide, onSubmit,value, label, change } ) => {
         <Modal.Body>
         <form onSubmit={onSubmit}>
            <br />
-     
-           <Form.Label>Your old category</Form.Label>
            <InputLogin  label={label}  value={value} change={change}/>
-           <input type="submit" value="Edit category" />
+           <input type="submit" value="Add new category" />
          </form>
         </Modal.Body>
          </Modal>    

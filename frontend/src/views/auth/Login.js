@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import InputLogin from "../../components/formInput/SignupForm";
 import TokenAuthentication from "../../components/token/token";
+import { useDispatch } from "react-redux";
+import { setUser } from "./store/actions";
+import {useNavigate} from "react-router-dom";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
   const [loading, setLoading] = useState(false);
+  const dispatch  = useDispatch();
+  const history = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +22,7 @@ const Login = () => {
       password: password,
     };
 
-    fetch("http://127.0.0.1:8000/api/v1/users/testLogin/", {
+    fetch("http://127.0.0.1:8000/api/v1/backend_react/testLogin/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,6 +33,7 @@ const Login = () => {
       .then((data) => {
         console.log("ovo je ispod data");
         console.log(data.token);
+        dispatch(setUser(data.token))
 
         if (data.token) {
           localStorage.clear();
